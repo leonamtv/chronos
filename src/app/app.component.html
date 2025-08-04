@@ -3,7 +3,7 @@
     <select class="tzCombo" [(ngModel)]="selectedTz">
       <option *ngFor="let tz of availableTimezones">{{tz}}</option>
     </select>
-    <button [disabled]="selectedTz.length >= 6" (click)="addTimezone()">add timezone</button>
+    <button [disabled]="timezones.length >= 6" (click)="addTimezone()">add timezone</button>
   </div>
   <div class="content">
     <div class="timezone" *ngFor="let timezone of timezones">

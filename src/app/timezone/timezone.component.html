@@ -1,0 +1,43 @@
+<div class="container">
+    <h3
+        [style.color]="colorOn"
+        [style.text-shadow]="'0 0 10px ' + colorOn"
+    >
+        {{timezone}}
+    </h3>
+    <button (click)="remove()">
+        remove
+    </button>
+    <br>
+    <app-watch
+        [timezone]="timezone"
+        [printLabels]="printLabels"
+        [canvasSize]="canvasSize"
+        [backgroundColor]="backgroundColor"
+        [secondHandColor]="secondHandColor"
+        [secondHandWidth]="secondHandWidth"
+        [minuteHandColor]="minuteHandColor"
+        [minuteHandWidth]="minuteHandWidth"
+        [hourHandColor]="hourHandColor"
+        [hourHandWidth]="hourHandWidth"
+        [textColor]="textColor"
+        [minorTickColor]="minorTickColor"
+        [minorTickWidth]="minorTickWidth"
+        [majorTickColor]="majorTickColor"
+        [majorTickWidth]="majorTickWidth"
+        [hourCenterPinDiameter]="hourCenterPinDiameter"
+        [minuteCenterPinDiameter]="minuteCenterPinDiameter"
+        [secondCenterPinDiameter]="secondCenterPinDiameter"
+        [centerPinDiameter]="centerPinDiameter"
+        [centerPinColor]="centerPinColor"
+    >
+    </app-watch>
+    <app-nine-segment-watch
+        [backgroundColor]="backgroundColor"
+        [timezone]="timezone"
+        [width]="digitWidth"
+        [height]="digitHeight"
+        [colorOn]="colorOn"
+    >
+    </app-nine-segment-watch>
+</div>

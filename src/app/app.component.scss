@@ -1,3 +1,19 @@
-* {
-    background-color: black;
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    .header {
+        padding-top: 20px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .timezone {
+        min-width: 760px;
+        max-width: 760px;
+    }
 }

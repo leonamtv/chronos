@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NineSegmentDigitComponent } from '../nine-segment-digit/nine-segment-digit.component';
+import { DateService } from '../date.service';
 
 @Component({
   selector: 'app-nine-segment-watch',
@@ -10,6 +11,7 @@ import { NineSegmentDigitComponent } from '../nine-segment-digit/nine-segment-di
 })
 export class NineSegmentWatchComponent {
   _date: Date = new Date()
+  _dateService: DateService
 
   firstHourDigit: string = ''
   secondHourDigit: string = ''
@@ -17,19 +19,16 @@ export class NineSegmentWatchComponent {
   secondMinuteDigit: string = ''
   firstSecondDigit: string = ''
   secondSecondDigit: string = ''
-  firstMillisecondDigit: string = ''
-  secondMillisecondDigit: string = ''
-  thirdMillisecondDigit: string = ''
 
   blinkingColon: string = ''
-  blinkingDot: string = ''
 
+  @Input() timezone: string
   @Input() width: number = 60
   @Input() height: number = this.width * 1.4
   @Input() randomNoise: boolean = false;
   @Input() glowColor: string = '#ff0000ff'
   @Input() glowBlur: number = 20
-  @Input() backgroundColor: string = '#000000'
+  @Input() backgroundColor: string = '#232323ff'
   @Input() colorOn: string = '#ffb4b4ff'
   @Input() colorOff: string = '#ffcece1a'
 
@@ -37,24 +36,21 @@ export class NineSegmentWatchComponent {
     this._date = date
   }
 
-  constructor() {
+  constructor(
+    private dateService: DateService
+  ) {
+    this._dateService = dateService
+    this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     setInterval(() => {
-      this._date = new Date()
+      this._date = this._dateService.convertToTimezone(new Date(), this.timezone)
       this._calculateSeparators()
-    }, 500)
-    setInterval(() => {
-      this._date = new Date()
       this._calculateDigits()
-    }, 10)
+    }, 500)
   }
 
   _calculateSeparators() {
     this.blinkingColon = (this.blinkingColon == '')
       ? ':'
-      : ''
-
-    this.blinkingDot = (this.blinkingDot == '')
-      ? '.'
       : ''
   }
 
@@ -62,7 +58,6 @@ export class NineSegmentWatchComponent {
     let hours = this._date.getHours().toString().padStart(2, '0')
     let minutes = this._date.getMinutes().toString().padStart(2, '0')
     let seconds = this._date.getSeconds().toString().padStart(2, '0')
-    let miliseconds = this._date.getMilliseconds().toString().padStart(3, '0');
 
     this.firstHourDigit = hours[0]
     this.secondHourDigit = hours[1]
@@ -72,12 +67,6 @@ export class NineSegmentWatchComponent {
 
     this.firstSecondDigit = seconds[0]
     this.secondSecondDigit = seconds[1]
-
-    this.firstMillisecondDigit = miliseconds[0]
-    this.secondMillisecondDigit = miliseconds[1]
-    this.thirdMillisecondDigit = miliseconds[2]
-
-    
   }
 
 }

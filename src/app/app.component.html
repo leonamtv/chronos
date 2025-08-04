@@ -1,39 +1,13 @@
 <main class="main">
+  <div class="header">
+    <select class="tzCombo" [(ngModel)]="selectedTz">
+      <option *ngFor="let tz of availableTimezones">{{tz}}</option>
+    </select>
+    <button [disabled]="selectedTz.length >= 6" (click)="addTimezone()">add timezone</button>
+  </div>
   <div class="content">
-    <!-- <ul>
-      <li *ngFor="let tz of available_timezones">
-        {{tz}}
-      </li>
-    </ul> -->
-
-  <!-- {{time_a}}<br>
-  {{time_b}}<br>
-  {{time_c}}<br> -->
-
-  <app-watch
-    [canvasSize]="canvasSize"
-    [backgroundColor]="backgroundColor"
-    [secondHandColor]="secondHandColor"
-    [secondHandWidth]="secondHandWidth"
-    [minuteHandColor]="minuteHandColor"
-    [minuteHandWidth]="minuteHandWidth"
-    [hourHandColor]="hourHandColor"
-    [hourHandWidth]="hourHandWidth"
-    [textColor]="textColor"
-    [minorTickColor]="minorTickColor"
-    [minorTickWidth]="minorTickWidth"
-    [majorTickColor]="majorTickColor"
-    [majorTickWidth]="majorTickWidth"
-    [hourCenterPinDiameter]="hourCenterPinDiameter"
-    [minuteCenterPinDiameter]="minuteCenterPinDiameter"
-    [secondCenterPinDiameter]="secondCenterPinDiameter"
-    [centerPinDiameter]="centerPinDiameter"
-    [centerPinColor]="centerPinColor"
-  >
-  </app-watch>
-  <br>
-  <app-nine-segment-watch>
-  </app-nine-segment-watch>
-
+    <div class="timezone" *ngFor="let timezone of timezones">
+      <app-timezone [timezone]="timezone" (removeTimezoneEvent)="removeTimezone($event)"></app-timezone>
+    </div>
   </div>
 </main>

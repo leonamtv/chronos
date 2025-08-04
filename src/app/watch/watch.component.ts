@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { DateService } from '../date.service';
 
 @Component({
   selector: 'app-watch',
@@ -9,10 +10,15 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
 })
 export class WatchComponent {
 
-  _date: Date = new Date();
+  _date: Date = new Date()
+
+  _dateService: DateService
   
+  @Input() timezone: string;
   @Input() canvasSize: number = 800
   @Input() watchRelativeSize: number = 0.9
+
+  @Input() printLabels: boolean = true
 
   @Input() backgroundColor: string = '#fdf0d5'
 
@@ -53,9 +59,13 @@ export class WatchComponent {
     this.drawClock()
   }
 
-  constructor() {
+  constructor(
+    private dateService: DateService
+  ) {
+    this._dateService = dateService
+    this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
     setInterval(() => {
-      this._date = new Date();
+      this._date = this._dateService.convertToTimezone(new Date(), this.timezone);
       this.drawClock()
     })
   }
@@ -71,7 +81,8 @@ export class WatchComponent {
 
       this.clearCanvas(ctx);
       this.drawTicks(radius, centerX, centerY, ctx);
-      this.drawLabels(ctx, centerX, centerY, height, width, radius);
+      if(this.printLabels)
+        this.drawLabels(ctx, centerX, centerY, height, width, radius);
       this.drawHourHand(ctx, centerX, centerY, radius);
       this.drawMinuteHand(ctx, centerX, centerY, radius);
       this.drawSecondHand(centerX, radius, centerY, ctx);

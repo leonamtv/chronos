@@ -20,7 +20,7 @@ export class WatchComponent {
 
   @Input() printLabels: boolean = true
 
-  @Input() backgroundColor: string = '#fdf0d5'
+  @Input() backgroundColor: string = '#EDF2F4'
 
   @Input() secondHandColor: string = '#c1121f'
   @Input() secondHandWidth: number = 8

@@ -1,7 +1,10 @@
-<div class="container">
+<div 
+    [style.background-color]="getColor('backgroundColor')"
+    [style.border]="getColor('colorOn') + ' solid 1px'"
+    class="container"
+>
     <h3
-        [style.color]="colorOn"
-        [style.text-shadow]="'0 0 10px ' + colorOn"
+        [style.color]="getColor('colorOn')"
     >
         {{timezone}}
     </h3>
@@ -13,31 +16,35 @@
         [timezone]="timezone"
         [printLabels]="printLabels"
         [canvasSize]="canvasSize"
-        [backgroundColor]="backgroundColor"
-        [secondHandColor]="secondHandColor"
+        [backgroundColor]="getColor('backgroundColor')"
+        [secondHandColor]="getColor('secondHandColor')"
         [secondHandWidth]="secondHandWidth"
-        [minuteHandColor]="minuteHandColor"
+        [minuteHandColor]="getColor('minuteHandColor')"
         [minuteHandWidth]="minuteHandWidth"
-        [hourHandColor]="hourHandColor"
+        [hourHandColor]="getColor('hourHandColor')"
         [hourHandWidth]="hourHandWidth"
         [textColor]="textColor"
-        [minorTickColor]="minorTickColor"
+        [minorTickColor]="getColor('minorTickColor')"
         [minorTickWidth]="minorTickWidth"
-        [majorTickColor]="majorTickColor"
+        [majorTickColor]="getColor('majorTickColor')"
         [majorTickWidth]="majorTickWidth"
         [hourCenterPinDiameter]="hourCenterPinDiameter"
         [minuteCenterPinDiameter]="minuteCenterPinDiameter"
         [secondCenterPinDiameter]="secondCenterPinDiameter"
         [centerPinDiameter]="centerPinDiameter"
-        [centerPinColor]="centerPinColor"
+        [centerPinColor]="getColor('centerPinColor')"
     >
     </app-watch>
     <app-nine-segment-watch
-        [backgroundColor]="backgroundColor"
         [timezone]="timezone"
-        [width]="digitWidth"
-        [height]="digitHeight"
-        [colorOn]="colorOn"
+        [width]="width"
+        [height]="height"
+        [randomNoise]="randomNoise"
+        [glowColor]="getColor('glowColor')"
+        [glowBlur]="glowBlur"
+        [backgroundColor]="getColor('backgroundColor')"
+        [colorOn]="getColor('colorOn')"
+        [colorOff]="getColor('colorOff')"
     >
     </app-nine-segment-watch>
 </div>

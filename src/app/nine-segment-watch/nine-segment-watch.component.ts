@@ -27,7 +27,7 @@ export class NineSegmentWatchComponent {
   @Input() height: number = this.width * 1.4
   @Input() randomNoise: boolean = false;
   @Input() glowColor: string = '#ff0000ff'
-  @Input() glowBlur: number = 20
+  @Input() glowBlur: number = 0
   @Input() backgroundColor: string = '#232323ff'
   @Input() colorOn: string = '#ffb4b4ff'
   @Input() colorOff: string = '#ffcece1a'

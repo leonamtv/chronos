@@ -5,6 +5,17 @@
     justify-content: center;
     .header {
         padding-top: 20px;
+
+        .add-timezone-button {
+            background-color: green;
+            color: white;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+
+        .add-timezone-button:hover {
+            background-color: rgb(7, 173, 7);
+        }
     }
 }
 
@@ -16,4 +27,8 @@
         min-width: 760px;
         max-width: 760px;
     }
+}
+
+option:nth-of-type(odd) {
+  background: white;
 }

@@ -12,7 +12,7 @@ import { ColorService } from '../color.service';
 })
 export class TimezoneComponent {
 
-  _darkTheme: boolean = false
+  _darkTheme: boolean = true
   _colorService: ColorService
 
   @Output() removeTimezoneEvent = new EventEmitter<string>();
@@ -49,7 +49,7 @@ export class TimezoneComponent {
   @Input() width: number = 100 / 1.4
   @Input() height: number = 100
   @Input() randomNoise: boolean = false;
-  @Input() glowBlur: number = this._darkTheme ? 10 : 0
+  @Input() glowBlur: number = this._darkTheme ? 20 : 0
 
   constructor(
     private colorService: ColorService

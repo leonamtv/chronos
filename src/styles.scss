@@ -4,6 +4,16 @@
     margin: 0;
 }
 html {
-    background-color: #EDF2F4;
-    // background-color: #272a2bff;
+    // background-color: #EDF2F4;
+    background-color: #272a2bff;
+}
+
+button {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    border: 0;
+    cursor: pointer;
 }

@@ -32,3 +32,12 @@
 option:nth-of-type(odd) {
   background: white;
 }
+
+@media only screen and (max-width: 650px) {
+    .content {
+        .timezone {
+            min-width: 380px;
+            max-width: 380px;
+        }
+    }
+}

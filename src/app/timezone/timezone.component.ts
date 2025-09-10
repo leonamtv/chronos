@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { NineSegmentWatchComponent } from '../nine-segment-watch/nine-segment-watch.component';
 import { WatchComponent } from '../watch/watch.component';
 import { ColorService } from '../color.service';
@@ -18,6 +18,7 @@ export class TimezoneComponent {
   @Output() removeTimezoneEvent = new EventEmitter<string>();
 
   @Input() timezone: string
+  private innerWidth: number
 
   @Input() printLabels: boolean = false
 
@@ -56,6 +57,26 @@ export class TimezoneComponent {
   ) {
     this._colorService = colorService
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    this.innerWidth = window.innerWidth;
+    this.resize()
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+    this.resize()
+  }
+
+  resize() {
+    this.innerWidth = window.innerWidth;
+    const threshold = 650
+    const baseWidthLarge = 100
+    const baseWidthSmall = 44
+    this.digitWidth = this.innerWidth >= threshold ? ( baseWidthLarge / 1.4 ) : ( baseWidthSmall / 1.4 )
+    this.digitHeight = this.innerWidth >= threshold ? baseWidthLarge : baseWidthSmall
+    this.canvasSize = this.innerWidth >= threshold ? baseWidthLarge : baseWidthSmall
+    this.width = this.innerWidth >= threshold ? ( baseWidthLarge / 1.4 ) : ( baseWidthSmall / 1.4 )
+    this.height = this.innerWidth >= threshold ? baseWidthLarge : baseWidthSmall
   }
 
   remove() {
